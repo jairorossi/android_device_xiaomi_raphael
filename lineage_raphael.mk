@@ -18,7 +18,7 @@ PRODUCT_NAME := lineage_raphael
 PRODUCT_DEVICE := raphael
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_BRAND := Xiaomi
-PRODUCT_MODEL := Mi 9T Pro
+PRODUCT_MODEL := Mi 9T Pro - Jairo Edition
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
@@ -26,3 +26,6 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="raphael-user 11 RKQ1.200826.002 V12.5.2.0.RFKMIXM release-keys"
 
 BUILD_FINGERPRINT := Xiaomi/raphael/raphael:11/RKQ1.200826.002/V12.5.2.0.RFKMIXM:user/release-keys
+
+# MindTheGapps - Jairo Edition
+$(call inherit-product, vendor/gapps/arm64/arm64-vendor.mk)
