@@ -27,6 +27,13 @@ PRODUCT_PACKAGES += \
     libMegviiFacepp-0.5.2 \
     libmegface
 
+# Lawnchair launcher (Jairo Edition)
+PRODUCT_PACKAGES += \
+    Lawnchair
+
+# Excluir Trebuchet da build (usar Lawnchair como launcher)
+TARGET_EXCLUDES_LAUNCHER := true
+
 # Camera motor
 PRODUCT_PACKAGES += \
     vendor.xiaomi.hardware.motor@1.0-service.xml
