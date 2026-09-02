@@ -27,12 +27,15 @@ PRODUCT_PACKAGES += \
     libMegviiFacepp-0.5.2 \
     libmegface
 
-# Lawnchair launcher (Jairo Edition)
+# Lawnchair launcher (Jairo Edition) - launcher adicional, mantem TrebuchetQuickStep para gestos
 PRODUCT_PACKAGES += \
     Lawnchair
 
-# Excluir Trebuchet da build (usar Lawnchair como launcher)
-TARGET_EXCLUDES_LAUNCHER := true
+# Plumpy icon overlays (Jairo Edition) - statusbar, volume, power
+PRODUCT_PACKAGES += \
+    IconifyComponentIPSUI4 \
+    IconifyComponentAMGC \
+    IconifyComponentIPAS4
 
 # Camera motor
 PRODUCT_PACKAGES += \
