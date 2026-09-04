@@ -58,7 +58,7 @@
     <dimen name="physical_volume_down_button_center_screen_location_y">700px</dimen>
 
     <!-- Location on the screen of the center of the fingerprint sensor. -->
-    <dimen name="physical_fingerprint_sensor_center_screen_location_y">1900px</dimen>
+    <dimen name="physical_fingerprint_sensor_center_screen_location_y">2026px</dimen>
 
     <!-- Doze: whether the single tap sensor uses the proximity sensor.
      If both this parameter and doze_selectively_register_prox are true, registration for the
