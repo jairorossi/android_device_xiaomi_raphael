@@ -242,6 +242,7 @@ Return<uint64_t> BiometricsFingerprint::preEnroll() {
 
 Return<RequestStatus> BiometricsFingerprint::enroll(const hidl_array<uint8_t, 69>& hat,
                                                     uint32_t gid, uint32_t timeoutSec) {
+    mCancelPending = false;
     const hw_auth_token_t* authToken = reinterpret_cast<const hw_auth_token_t*>(hat.data());
     return ErrorFilter(mDevice->enroll(mDevice, authToken, gid, timeoutSec));
 }
@@ -255,6 +256,7 @@ Return<uint64_t> BiometricsFingerprint::getAuthenticatorId() {
 }
 
 Return<RequestStatus> BiometricsFingerprint::cancel() {
+    mCancelPending = true;
     return ErrorFilter(mDevice->cancel(mDevice));
 }
 
@@ -286,6 +288,7 @@ Return<RequestStatus> BiometricsFingerprint::setActiveGroup(uint32_t gid,
 }
 
 Return<RequestStatus> BiometricsFingerprint::authenticate(uint64_t operationId, uint32_t gid) {
+    mCancelPending = false;
     return ErrorFilter(mDevice->authenticate(mDevice, operationId, gid));
 }
 
@@ -387,7 +390,15 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
         case FINGERPRINT_ERROR: {
             int32_t vendorCode = 0;
             FingerprintError result = VendorErrorFilter(msg->data.error, &vendorCode);
-            ALOGD("onError(%d)", result);
+            ALOGD("onError(%d, raw_error=%d, cancelPending=%d)", (int)result, msg->data.error, (int)thisPtr->mCancelPending);
+            if (result == FingerprintError::ERROR_CANCELED && !thisPtr->mCancelPending) {
+                ALOGI("Spontaneous vendor cancellation ignored during active session; sending onAcquired PARTIAL");
+                if (!thisPtr->mClientCallback->onAcquired(devId, FingerprintAcquiredInfo::ACQUIRED_PARTIAL, 0).isOk()) {
+                    ALOGE("failed to invoke fingerprint onAcquired callback");
+                }
+                break;
+            }
+            thisPtr->mCancelPending = false;
             if (!thisPtr->mClientCallback->onError(devId, result, vendorCode).isOk()) {
                 ALOGE("failed to invoke fingerprint onError callback");
             }

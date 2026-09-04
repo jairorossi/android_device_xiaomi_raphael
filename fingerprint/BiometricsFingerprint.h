@@ -84,6 +84,7 @@ struct BiometricsFingerprint : public IBiometricsFingerprint, public IXiaomiFing
     std::mutex mClientCallbackMutex;
     sp<IBiometricsFingerprintClientCallback> mClientCallback;
     fingerprint_device_t* mDevice;
+    bool mCancelPending = false;
 
     // Methods from ::android::hardware::biometrics::fingerprint::V2_3::IBiometricsFingerprint follow.
     Return<bool> isUdfps(uint32_t sensorId) override;
