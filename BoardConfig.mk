@@ -196,7 +196,7 @@ TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 ENABLE_VENDOR_RIL_SERVICE := true
 
 # Security
-VENDOR_SECURITY_PATCH := 2023-02-01
+VENDOR_SECURITY_PATCH := 2026-08-01
 
 # Sepolicy
 include device/qcom/sepolicy_vndr-legacy-um/SEPolicy.mk
@@ -238,3 +238,10 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 # Inherit from the proprietary version
 include vendor/xiaomi/raphael/BoardConfigVendor.mk
 
+
+# Lineage build name (necessario para incluir BoardConfigSoong.mk e definir PATH_OVERRIDE_SOONG)
+LINEAGE_BUILD := raphael
+
+
+# Desabilita o check de dexpreopt (roda antes dos artefatos serem gerados no ckati)
+DISABLE_DEXPREOPT_CHECK := true

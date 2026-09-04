@@ -39,3 +39,17 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME="raphael"
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
+
+
+
+# ===== Jairo Rossi - personalizacao =====
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.display.id=crDroid-Raphael-Edition-by-Jairo \
+    ro.modversion=crDroid-Raphael-Edition-by-Jairo \
+    ro.build.version.security_patch=2026-08-01
+
+# Nao exigir kernel no OTA (device compila kernel do source)
+PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
+
+# Nao exigir kernel no OTA (device compila kernel do source)
+PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
