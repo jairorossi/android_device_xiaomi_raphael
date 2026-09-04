@@ -627,4 +627,7 @@
 
     <!-- Preferred max refresh rate at keyguard, if supported by the display. -->
     <integer name="config_keyguardMaxRefreshRate">60</integer>
+    <!-- Disable intermediate UDFPS enroll stage thresholds (Pixel guided enrollment) -->
+    <string-array name="config_udfps_enroll_stage_thresholds" translatable="false" />
+
 </resources>
